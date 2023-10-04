@@ -96,6 +96,11 @@ you can connect to the Proxmox server and go to your VM and look on the cloud-in
 
 ![alt text](pics/gui-cloudinit-config.png)
 
+> You can generate new ssh key:
+> ```bash
+> ssh-keygen -t ed25519 -f ~/.ssh/proxk3s -C "your_email@example.com"
+> ```
+
 you will need to change the user name, password, and add the ssh public key so we can connect to the VM later using Ansible and terraform.
 update the variables and click on `Regenerate Image`
 
@@ -120,8 +125,8 @@ to run the Terrafom, you will need to cd into `terraform` and run:
 ```bash
 cd terraform/
 terraform init
-terraform plan --var-file=variables.tfvars
-terraform apply --var-file=variables.tfvars
+terraform plan # --var-file=variables.tfvars
+terraform apply # --var-file=variables.tfvars
 ```
 
 it can take some time to create the servers on Proxmox but you can monitor them over Proxmox.
@@ -131,7 +136,7 @@ it should look like this now:
 
 ### Ansible setup
 
-First, update the var file in `inventory/my-cluster/group_vars/all.yml` and update the ```ansible_user``` that you're selected in the cloud-init setup. you can also choose if you wold like to install metallb and argocd. if you are installing metallb, you should also specified an ip range for metallb. 
+First, update the var file in `inventory/my-cluster/group_vars/all.yml` and update the ```ansible_user``` that you're selected in the cloud-init setup. you can also choose if you wold like to install metallb and argocd. if you are installing metallb, you should also specified an ip range for metallb.
 
 if you are running multiple clusters in your kubeconfig file, make sure to disable ```copy_kubeconfig```.
 
@@ -139,13 +144,13 @@ after you run the Terrafom file, your file should look like this:
 
 ```bash
 [master]
-192.168.3.200 Ansible_ssh_private_key_file=~/.ssh/proxk3s
+192.168.1.200 Ansible_ssh_private_key_file=~/.ssh/proxk3s
 
 [node]
-192.168.3.202 Ansible_ssh_private_key_file=~/.ssh/proxk3s
-192.168.3.201 Ansible_ssh_private_key_file=~/.ssh/proxk3s
-192.168.3.198 Ansible_ssh_private_key_file=~/.ssh/proxk3s
-192.168.3.203 Ansible_ssh_private_key_file=~/.ssh/proxk3s
+192.168.1.202 Ansible_ssh_private_key_file=~/.ssh/proxk3s
+192.168.1.201 Ansible_ssh_private_key_file=~/.ssh/proxk3s
+192.168.1.198 Ansible_ssh_private_key_file=~/.ssh/proxk3s
+192.168.1.203 Ansible_ssh_private_key_file=~/.ssh/proxk3s
 
 [k3s_cluster:children]
 master

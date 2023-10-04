@@ -31,7 +31,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_gateway"></a> [gateway](#input\_gateway) | n/a | `string` | `"192.168.3.1"` | no |
+| <a name="input_gateway"></a> [gateway](#input\_gateway) | n/a | `string` | `"192.168.1.1"` | no |
 | <a name="input_master_ips"></a> [master\_ips](#input\_master\_ips) | List of ip addresses for master nodes | `any` | n/a | yes |
 | <a name="input_networkrange"></a> [networkrange](#input\_networkrange) | n/a | `number` | `24` | no |
 | <a name="input_num_k3s_masters"></a> [num\_k3s\_masters](#input\_num\_k3s\_masters) | n/a | `number` | `1` | no |
@@ -44,7 +44,7 @@ No modules.
 | <a name="input_pm_tls_insecure"></a> [pm\_tls\_insecure](#input\_pm\_tls\_insecure) | Set to true to ignore certificate errors | `bool` | `false` | no |
 | <a name="input_pm_user"></a> [pm\_user](#input\_pm\_user) | The username for the proxmox user | `string` | `"root@pam"` | no |
 | <a name="input_pvt_key"></a> [pvt\_key](#input\_pvt\_key) | n/a | `any` | n/a | yes |
-| <a name="input_tamplate_vm_name"></a> [tamplate\_vm\_name](#input\_tamplate\_vm\_name) | n/a | `any` | n/a | yes |
+| <a name="input_template_vm_name"></a> [tamplate\_vm\_name](#input\_tamplate\_vm\_name) | n/a | `any` | n/a | yes |
 | <a name="input_worker_ips"></a> [worker\_ips](#input\_worker\_ips) | List of ip addresses for worker nodes | `any` | n/a | yes |
 
 ## Outputs
